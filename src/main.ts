@@ -1,5 +1,9 @@
-import { getCurrentWindow } from "@tauri-apps/api/window";
+import { invoke } from "@tauri-apps/api/core";
+
+document.getElementById("create-btn")!.addEventListener("click", async () => {
+  await invoke("create_window");
+});
 
 document.getElementById("close-btn")!.addEventListener("click", async () => {
-  await getCurrentWindow().close();
+  await invoke("close_window");
 });
