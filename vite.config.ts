@@ -5,4 +5,12 @@ export default defineConfig({
   server: {
     strictPort: true,
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: "index.html",
+        secondary: "secondary.html",
+      },
+    },
+  },
 });

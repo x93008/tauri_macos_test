@@ -11,7 +11,7 @@ fn create_window(app: tauri::AppHandle) {
     let _ = tauri::WebviewWindowBuilder::new(
         &app,
         "secondary",
-        tauri::WebviewUrl::App("index.html".into()),
+        tauri::WebviewUrl::App("secondary.html".into()),
     )
     .title("Secondary")
     .inner_size(400.0, 300.0)
