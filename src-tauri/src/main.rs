@@ -13,8 +13,12 @@ fn create_window(app: tauri::AppHandle) {
         "secondary",
         tauri::WebviewUrl::App("secondary.html".into()),
     )
-    .title("Secondary")
-    .inner_size(400.0, 300.0)
+    .title("circle")
+    .inner_size(280.0, 280.0)
+    .decorations(false)
+    .transparent(true)
+    .shadow(false)
+    .center()
     .build();
 }
 
