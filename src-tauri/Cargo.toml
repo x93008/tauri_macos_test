@@ -4,7 +4,7 @@ version = "0.0.1"
 edition = "2021"
 
 [features]
-default = ["tauri/macos-private-api"]
+default = ["tauri/macos-private-api", "wry/transparent"]
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
