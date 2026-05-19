@@ -1,0 +1,17 @@
+{
+  "name": "tauri-macos-test",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2",
+    "vite": "^6"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2"
+  }
+}
