@@ -1,18 +1,24 @@
 #!/bin/bash
+set -e
 
-# Build for macOS 10.13+ (arm64 minimum is effectively 11.0)
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+cd "$PROJECT_DIR"
+
 export MACOSX_DEPLOYMENT_TARGET=10.13
 
 cargo tauri build --bundles app "$@"
 
-APP="src-tauri/target/release/bundle/macos/tauri-macos-test.app"
+APP="$PROJECT_DIR/src-tauri/target/release/bundle/macos/tauri-macos-test.app"
 BIN="$APP/Contents/MacOS/tauri-macos-test"
 
-# Fix: macOS 14+ linker embeds "linker-signed" flag incompatible with older macOS
-# Strip and re-sign with clean ad-hoc signature
-codesign --remove-signature "$BIN" 2>/dev/null
-codesign -s - -f "$BIN" 2>/dev/null
-rm -rf "$APP/Contents/_CodeSignature" 2>/dev/null
-codesign -s - -f "$APP" 2>/dev/null
+# Strip macOS 14+ linker-signed flag, re-sign with clean ad-hoc for macOS 11 compat
+if [ -f "$BIN" ]; then
+  codesign --remove-signature "$BIN"
+  codesign -s - -f "$BIN"
+  rm -rf "$APP/Contents/_CodeSignature"
+  codesign -s - -f "$APP"
+fi
 
 echo "Built: $APP"
