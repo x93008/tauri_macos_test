@@ -6,6 +6,9 @@ edition = "2021"
 [features]
 default = ["tauri/macos-private-api", "wry"]
 
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
 [dependencies]
 tauri = { version = "2", features = ["image-png"] }
 serde = { version = "1", features = ["derive"] }
